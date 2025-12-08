@@ -1,0 +1,3 @@
+- [ ] fix l'erreur de dans themeprovider
+- [ ] ajouter le theme shadcn rose (et si possible dracula, comme vu avec claude)
+- [ ] modif le toggle mode pour qu'il toggle juste entre theme noir et blanc (encore a reflechir)
