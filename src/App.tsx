@@ -11,7 +11,7 @@ function App() {
     return (
         <ThemeProvider>
             <BrowserRouter>
-                <div className="min-h-screen bg-background ">
+                <div className="min-h-screen">
                     {/* Navigation */}
                     <nav className="border-b">
                         <div className="flex justify-between p-4">

@@ -65,7 +65,41 @@ Notes techniques
     },
     {
         title: "Jamais deux sans trois",
-        content: "Comme dit le proverbe, jamais deux sans trois quoi!",
+        content: "Comme dit le proverbe,\n jamais deux sans trois quoi!",
+    },
+    {
+        title: "Le truc a faire mtn",
+        content: `  1. Structure de données\n
+
+  D'abord, réfléchis : comment tu veux stocker tes notes ?\n
+\n
+  // Une note, ça ressemble à quoi ?\n
+  {\n
+    id: string,      // identifiant unique\n
+    title: string,   // ton Input\n
+    content: string, // ton Textarea\n
+    createdAt: Date  // optionnel mais pratique\n
+  }                                            \n
+                                               \n
+  // Et toutes tes notes ?                     \n
+  // → Un array : [note1, note2, note3...]     \n
+                                               \n
+  Problème : localStorage ne stocke que des strings, pas des objets !\n
+                                                                     \n
+  Solution : JSON.stringify() et JSON.parse()                        \n
+                                                                     \n
+  2. Les étapes à implémenter                                        \n
+                                                                     \n
+  Tu vas avoir besoin de :                                           \n
+                                                                     \n
+  1. State pour les inputs : useState pour le titre et le contenu    \n
+  2. Handler du formulaire : fonction onSubmit qui :                 \n
+    - Récupère les valeurs                                           \n
+    - Crée un objet note                                             \n
+    - L'ajoute au localStorage                                       \n
+    - Redirige vers la page d'accueil                                \n
+  3. Gérer l'array de notes : récupérer les notes existantes avant d'ajouter la
+  nouvelle`,
     },
 ];
 
