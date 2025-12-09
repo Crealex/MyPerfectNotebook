@@ -7,12 +7,13 @@ import { useState } from "react";
 export function NewNotePage() {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
-    function onSubmit() {
+    function onSubmit(e: HTMLFormElement) {
         const dataNote = {
             title: title,
             content: content,
             date: new Date().toLocaleString(),
         };
+        e.preventDefault();
         localStorage.setItem(
             "note: " + dataNote.date,
             JSON.stringify(dataNote),
@@ -21,7 +22,7 @@ export function NewNotePage() {
     return (
         <div className="h-screen">
             <h1 className="text-4xl text-center my-4">Nouvelle note</h1>
-            <form className="h-full" onSubmit={onSubmit}>
+            <form className="h-full" onSubmit={(e) => onSubmit(e)}>
                 <Field className="h-3/4">
                     <Input
                         placeholder="Mon titre ici..."
