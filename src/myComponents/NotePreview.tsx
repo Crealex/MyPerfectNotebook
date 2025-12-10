@@ -3,31 +3,36 @@ import {
     Card,
     CardAction,
     CardContent,
+    CardDescription,
     CardFooter,
     CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import type { notesType } from "@/utils/notesType";
 import { ChevronDown, Edit, Trash } from "lucide-react";
 import { useState } from "react";
 
 type Props = {
-    title: string;
-    content: string;
+    note: notesType;
+    deleteNote: (note: notesType) => void;
+    editNote: (oldNote: notesType, newNote: notesType) => void;
 };
 
-export function NotePreview({ title, content }: Props) {
+export function NotePreview({ note, deleteNote, editNote }: Props) {
     const [isExpanded, setIsExpanded] = useState(false);
     return (
         <Card className="my-10">
-            <CardTitle className="text-xl text-center ">{title}</CardTitle>
+            <CardTitle className="text-xl text-center ">{note.title}</CardTitle>
+            <CardDescription className="italic text-center">
+                {"dernière modification: " + note.date}
+            </CardDescription>
             <CardContent
                 className={cn(
                     !isExpanded && "line-clamp-5",
-                    "transition-transition",
-                    "duration-500",
+                    "whitespace-pre-wrap",
                 )}
             >
-                {content}
+                {note.content}
             </CardContent>
             <CardFooter className="gap-3">
                 <CardAction>
@@ -43,11 +48,14 @@ export function NotePreview({ title, content }: Props) {
                 </CardAction>
                 <CardAction>
                     <Button>
-                        <Edit />
+                        <Edit onClick={() => editNote(note, note)} />
                     </Button>
                 </CardAction>
                 <CardAction>
-                    <Button variant={"destructive"}>
+                    <Button
+                        variant={"destructive"}
+                        onClick={() => deleteNote(note)}
+                    >
                         <Trash />
                     </Button>
                 </CardAction>

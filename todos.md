@@ -1,3 +1,7 @@
+# TODO
+
 - [ ] fix l'erreur de dans themeprovider
-- [ ] ajouter le theme shadcn rose (et si possible dracula, comme vu avec claude)
-- [ ] modif le toggle mode pour qu'il toggle juste entre theme noir et blanc (encore a reflechir)
+- [x] ajouter le theme shadcn rose (et si possible dracula, comme vu avec claude)
+- [ ] créer l'edit page
+
+- [ ] faire que le menu edit soit une fenetre flottante (risque d'être très compliqué)

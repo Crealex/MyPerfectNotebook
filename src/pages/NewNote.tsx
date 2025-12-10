@@ -2,22 +2,30 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import type { notesType } from "@/utils/notesType";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export function NewNotePage() {
+type Props = {
+    notes: notesType[];
+    addNote: (note: notesType) => void;
+};
+
+export function NewNotePage({ addNote }: Props) {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
-    function onSubmit(e: HTMLFormElement) {
-        const dataNote = {
+    const navigate = useNavigate();
+
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const newNote = {
             title: title,
             content: content,
             date: new Date().toLocaleString(),
+            id: Date.now(),
         };
-        e.preventDefault();
-        localStorage.setItem(
-            "note: " + dataNote.date,
-            JSON.stringify(dataNote),
-        );
+        addNote(newNote);
+        navigate("/");
     }
     return (
         <div className="h-screen">
