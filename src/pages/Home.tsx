@@ -21,6 +21,7 @@ export function HomePage({
                         editNote={editNote}
                         deleteNote={deleteNote}
                     />
+
                 );
             })}
         </div>

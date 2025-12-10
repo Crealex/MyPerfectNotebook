@@ -8,6 +8,7 @@ import { ThemeProvider } from "./myComponents/themeProvider";
 import { ModeToggle } from "./myComponents/ModeToggle";
 import { useEffect, useState } from "react";
 import type { notesType } from "./utils/notesType";
+import { EditNotePage } from "./pages/editNote";
 
 const initialNotes = [
     {
@@ -163,6 +164,15 @@ function App() {
                             <Route
                                 path="/settings"
                                 element={<SettingsPage />}
+                            />
+                            <Route
+                                path="/edit"
+                                element={
+                                    <EditNotePage
+                                        note={notes[0]}
+                                        editNote={editNote}
+                                    />
+                                }
                             />
                         </Routes>
                     </main>
