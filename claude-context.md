@@ -53,18 +53,18 @@ Application web de prise de notes développée **progressivement** pour apprendr
 - [x] Repository GitHub créé
 - [x] Structure de base du projet
 
-### 🔄 Phase 1: MVP Local (EN COURS - 1-2 semaines)
+### 🔄 Phase 1: MVP Local (PROBABLEMENT TERMINÉ)
 
 **Objectif**: App fonctionnelle dans le navigateur, sans backend
 
 **Features à implémenter:**
 
-- [ ] Création de notes
-- [ ] Édition de notes
-- [ ] Suppression de notes
-- [ ] Liste des notes avec recherche basique
-- [ ] Éditeur de texte simple (textarea ou markdown basique)
-- [ ] Stockage dans localStorage
+- [x] Création de notes
+- [x] Édition de notes
+- [x] Suppression de notes
+- [x] Liste des notes avec recherche basique
+- [x] Éditeur de texte simple (textarea ou markdown basique) (potentiel amélioration possible)
+- [x] Stockage dans localStorage
 
 **Compétences à acquérir:**
 
@@ -74,7 +74,7 @@ Application web de prise de notes développée **progressivement** pour apprendr
 - LocalStorage API
 - Composants shadcn/ui
 
-### 📦 Phase 2: Backend et Base de Données (2-3 semaines)
+### 📦 Phase 2: Backend et Base de Données (EN COURS - 2-3 semaines)
 
 **Objectif**: Persistance des données et synchronisation multi-appareils
 
@@ -171,7 +171,7 @@ myperfectnotebook/
 
 ## 🎓 Approche Pédagogique Recommandée
 
-### Quand Alexandre pose une question:
+### Quand Alexandre pose une question
 
 1. **Comprendre le contexte** : Quelle phase? Quel problème?
 2. **Expliquer le concept** d'abord
@@ -179,7 +179,7 @@ myperfectnotebook/
 4. **Donner des ressources** : liens docs, exemples similaires
 5. **Code uniquement si explicitement demandé**
 
-### Types de réponses selon la demande:
+### Types de réponses selon la demande
 
 **"Comment faire X ?"**
 → Explication du concept + direction générale + ressources

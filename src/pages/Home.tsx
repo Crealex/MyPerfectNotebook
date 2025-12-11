@@ -2,6 +2,7 @@ import { NotePreview } from "@/myComponents/NotePreview";
 import type { notesType } from "@/utils/notesType";
 import { useState } from "react";
 import { SearchBar } from "@/myComponents/searchBar";
+import { Frown } from "lucide-react";
 
 export function HomePage({
     editNote,
@@ -14,7 +15,7 @@ export function HomePage({
 }) {
     const [search, setSearch] = useState("");
     const filteredNotes = notes.filter((note) => {
-        if (!search) return note;
+        if (!search) return true;
         const lower = search.toLowerCase();
         return (
             note.title.toLowerCase().includes(lower) ||
@@ -25,16 +26,21 @@ export function HomePage({
         <div>
             <h1 className="text-4xl text-center my-4">Mes notes</h1>
             <SearchBar search={search} setSearch={setSearch} />
-            {filteredNotes.map((note: notesType) => {
-                return (
+            {filteredNotes.length === 0 ? (
+                <div className="text-center text-xl mt-16 flex gap-4 justify-center">
+                    Aucune note trouvée pour {search}
+                    <Frown />
+                </div>
+            ) : (
+                filteredNotes.map((note: notesType) => (
                     <NotePreview
                         key={note.id}
                         note={note}
                         editNote={editNote}
                         deleteNote={deleteNote}
                     />
-                );
-            })}
+                ))
+            )}
         </div>
     );
 }
