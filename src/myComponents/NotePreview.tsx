@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import type { notesType } from "@/utils/notesType";
 import { ChevronDown, Edit, Trash } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type Props = {
     note: notesType;
@@ -21,7 +21,7 @@ type Props = {
 
 export function NotePreview({ note, deleteNote }: Props) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const navigate = useNavigate();
+
     return (
         <Card className="my-10">
             <CardTitle className="text-xl text-center ">{note.title}</CardTitle>
@@ -49,7 +49,7 @@ export function NotePreview({ note, deleteNote }: Props) {
                     </Button>
                 </CardAction>
                 <CardAction>
-                    <Link to={"/edit"}>
+                    <Link to={`/edit/${note.id}`}>
                         <Button>
                             <Edit />
                         </Button>

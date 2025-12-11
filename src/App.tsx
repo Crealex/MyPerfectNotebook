@@ -101,15 +101,18 @@ function App() {
     }
 
     function deleteNote(target: notesType) {
-        setNotes(notes.filter((note: notesType) => target.id != note.id));
+        setNotes(notes.filter((note: notesType) => target.id !== note.id));
         console.log(
             "Note " + target.title + " datant du " + target.date + " supprimée",
         );
     }
 
     function editNote(oldNote: notesType, newNote: notesType) {
-        deleteNote(oldNote);
-        addNote(newNote);
+        setNotes((prevNotes: notesType[]) =>
+            prevNotes.map((note: notesType) =>
+                note.id === oldNote.id ? newNote : note,
+            ),
+        );
     }
     return (
         <ThemeProvider>
@@ -166,11 +169,11 @@ function App() {
                                 element={<SettingsPage />}
                             />
                             <Route
-                                path="/edit"
+                                path="/edit/:note"
                                 element={
                                     <EditNotePage
-                                        note={notes[0]}
                                         editNote={editNote}
+                                        notes={notes}
                                     />
                                 }
                             />
