@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { notesType } from "@/utils/notesType";
+import type { User } from "@supabase/supabase-js";
 import { ChevronDown, Edit, Trash } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -17,6 +18,7 @@ type Props = {
     note: notesType;
     deleteNote: (note: notesType) => void;
     editNote: (oldNote: notesType, newNote: notesType) => void;
+    user: User | null;
 };
 
 export function NotePreview({ note, deleteNote }: Props) {

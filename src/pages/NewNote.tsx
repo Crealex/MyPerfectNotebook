@@ -3,15 +3,18 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { notesType } from "@/utils/notesType";
+import type { User } from "@supabase/supabase-js";
+import { Frown } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
     notes: notesType[];
     addNote: (note: notesType) => void;
+    user: User | null;
 };
 
-export function NewNotePage({ addNote }: Props) {
+export function NewNotePage({ addNote, user }: Props) {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const navigate = useNavigate();
@@ -23,10 +26,17 @@ export function NewNotePage({ addNote }: Props) {
             content: content,
             date: new Date().toLocaleString(),
             id: Date.now(),
+            user_id: user!.id,
         };
         addNote(newNote);
         navigate("/");
     }
+    if (!user)
+        return (
+            <div className="flex gap-2 text-center mt-10">
+                Tu n'es pas connecté <Frown />
+            </div>
+        );
     return (
         <div className="h-screen">
             <h1 className="text-4xl text-center my-4">Nouvelle note</h1>

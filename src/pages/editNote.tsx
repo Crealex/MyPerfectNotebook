@@ -3,15 +3,17 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { notesType } from "@/utils/notesType";
+import type { User } from "@supabase/supabase-js";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 type Props = {
     editNote: (oldNote: notesType, newNote: notesType) => void;
     notes: notesType[];
+	user: User | null;
 };
 
-export function EditNotePage({ notes, editNote }: Props) {
+export function EditNotePage({ notes, editNote, user }: Props) {
     const navigate = useNavigate();
     const { note: noteId } = useParams<{ note: string }>();
 
@@ -32,6 +34,7 @@ export function EditNotePage({ notes, editNote }: Props) {
             content: content!,
             date: new Date().toLocaleString(),
             id: note!.id!,
+			user_id: user!.id
         };
         editNote(note!, newNote);
         navigate("/");

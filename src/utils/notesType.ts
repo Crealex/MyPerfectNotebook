@@ -3,4 +3,5 @@ export type notesType = {
     date: string;
     title: string;
     content: string;
+	user_id: string;
 };

@@ -83,24 +83,38 @@ Application web de prise de notes développée **progressivement** pour apprendr
 - LocalStorage API
 - Composants shadcn/ui
 
-### Phase 2: Backend et Base de Données (EN COURS - 2-3 semaines)
+### Phase 2: Backend et Base de Données (QUASIMENT TERMINÉ)
 
 **Objectif**: Persistance des données et synchronisation multi-appareils
 
-**Features à ajouter:**
+**Features implémentées:**
 
-- [ ] Configuration de Supabase
-- [ ] Système d'authentification (email/password)
-- [ ] Migration localStorage → PostgreSQL
-- [ ] API CRUD complète
-- [ ] Gestion d'état asynchrone
+- [x] Configuration de Supabase (projet créé, client initialisé)
+- [x] Table `notes` avec RLS (Row Level Security)
+- [x] Policies pour sécuriser le CRUD (select, insert, update, delete)
+- [x] Système d'authentification (email/password)
+  - [x] SignIn (connexion)
+  - [x] SignUp (inscription)
+  - [x] SignOut (déconnexion)
+  - [x] onAuthStateChange (listener centralisé)
+- [x] Migration localStorage → PostgreSQL
+- [x] API CRUD complète (fetchNotes, addNote, editNote, deleteNote)
+- [x] Gestion d'état asynchrone (async/await, useEffect)
 
-**Nouvelles compétences:**
+**À nettoyer:**
 
-- Requêtes SQL/API
-- Authentification utilisateur
-- Gestion d'état asynchrone
-- Base de données relationnelle
+- [ ] Supprimer le code commenté (initialNotes)
+- [ ] Supprimer le useEffect localStorage (plus nécessaire)
+- [ ] Tester avec plusieurs comptes utilisateurs
+
+**Compétences acquises:**
+
+- Requêtes SQL/API avec Supabase
+- Authentification utilisateur (sessions, tokens)
+- Gestion d'état asynchrone (Promises, async/await)
+- Base de données relationnelle (PostgreSQL)
+- Row Level Security (RLS) et policies
+- Listeners et subscriptions (onAuthStateChange)
 
 ### Phase 3: Features Avancées (flexible)
 
@@ -109,7 +123,7 @@ Application web de prise de notes développée **progressivement** pour apprendr
 - [ ] Éditeur Markdown avec preview
 - [ ] Système de tags et catégories
 - [ ] Partage de notes
-- [ ] Mode sombre/clair
+- [x] Mode sombre/clair (déjà implémenté !)
 - [ ] Raccourcis clavier (hotkeys)
 - [ ] Export PDF/Markdown
 - [ ] Recherche avancée
@@ -290,11 +304,17 @@ Tu as déjà utilisé `useState` ? Si oui, essaie de créer un état pour stocke
 - [Tailwind CSS v4 Docs](https://tailwindcss.com/)
 - [shadcn/ui Documentation](https://ui.shadcn.com/)
 - [Vite Guide](https://vitejs.dev/guide/)
+- [Supabase Docs](https://supabase.com/docs)
 
 ## État Actuel du Projet
 
-**Dernière mise à jour**: Décembre 2025
+**Dernière mise à jour**: 13 Décembre 2025
 
-**Phase en cours**: Phase 2 - Backend et Base de Données (Supabase)
+**Phase en cours**: Phase 2 - Backend et Base de Données (Supabase) — QUASIMENT TERMINÉE
+
+**Prochaines étapes suggérées**:
+1. Nettoyage du code (supprimer code commenté, useEffect localStorage)
+2. Tester l'app avec plusieurs comptes
+3. Choisir une feature Phase 3 ou passer au déploiement
 
 **Rappel final**: Alexandre veut **apprendre**, pas juste avoir une app qui fonctionne. La qualité de son apprentissage est plus importante que la vitesse de développement.

@@ -41,6 +41,7 @@ export function HomePage({
                         note={note}
                         editNote={editNote}
                         deleteNote={deleteNote}
+						user={user}
                     />
                 ))
             )}
