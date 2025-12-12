@@ -3,15 +3,18 @@ import type { notesType } from "@/utils/notesType";
 import { useState } from "react";
 import { SearchBar } from "@/myComponents/searchBar";
 import { Frown } from "lucide-react";
+import type { User } from "@supabase/supabase-js";
 
 export function HomePage({
     editNote,
     deleteNote,
     notes,
+    user,
 }: {
     editNote: (oldNote: notesType, newNote: notesType) => void;
     deleteNote: (note: notesType) => void;
     notes: notesType[];
+    user: User | null;
 }) {
     const [search, setSearch] = useState("");
     const filteredNotes = notes.filter((note) => {

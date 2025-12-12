@@ -14,7 +14,6 @@ type Props = {
 export function EditNotePage({ notes, editNote }: Props) {
     const navigate = useNavigate();
     const { note: noteId } = useParams<{ note: string }>();
-    console.log(`id: ${noteId}`);
 
     const note =
         notes.find((e: notesType) => e.id.toString() === noteId) ?? null;

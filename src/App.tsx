@@ -9,6 +9,8 @@ import { ModeToggle } from "./myComponents/ModeToggle";
 import { useEffect, useState } from "react";
 import type { notesType } from "./utils/notesType";
 import { EditNotePage } from "./pages/editNote";
+import type { User } from "@supabase/supabase-js";
+import { supabase } from "./utils/initSupabase";
 
 const initialNotes = [
     {
@@ -86,6 +88,7 @@ Notes techniques
 ];
 
 function App() {
+    const [user, setUser] = useState<User | null>(null);
     const [notes, setNotes] = useState(() => {
         const saved = localStorage.getItem("notesArray");
         return saved ? JSON.parse(saved) : initialNotes;
@@ -94,6 +97,16 @@ function App() {
     useEffect(() => {
         localStorage.setItem("notesArray", JSON.stringify(notes));
     }, [notes]);
+
+    useEffect(() => {
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((event, session) => {
+            setUser(session?.user ?? null);
+            console.log(event);
+        });
+        return () => subscription.unsubscribe();
+    }, []);
 
     function addNote(newNote: notesType) {
         setNotes([newNote, ...notes]);
@@ -152,6 +165,7 @@ function App() {
                                         notes={notes}
                                         editNote={editNote}
                                         deleteNote={deleteNote}
+                                        user={user}
                                     />
                                 }
                             />
@@ -166,7 +180,11 @@ function App() {
                             />
                             <Route
                                 path="/settings"
-                                element={<SettingsPage />}
+                                element={
+                                    <SettingsPage
+                                        user={user}
+                                    />
+                                }
                             />
                             <Route
                                 path="/edit/:note"
