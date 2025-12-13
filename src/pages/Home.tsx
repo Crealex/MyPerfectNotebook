@@ -25,6 +25,12 @@ export function HomePage({
             note.content.toLowerCase().includes(lower)
         );
     });
+    if (!user)
+        return (
+            <div className="text-center text-xl mt-16 flex gap-4 justify-center">
+                Pas de compte connecté <Frown />
+            </div>
+        );
     return (
         <div>
             <h1 className="text-4xl text-center my-4">Mes notes</h1>
@@ -41,7 +47,7 @@ export function HomePage({
                         note={note}
                         editNote={editNote}
                         deleteNote={deleteNote}
-						user={user}
+                        user={user}
                     />
                 ))
             )}

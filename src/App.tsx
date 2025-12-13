@@ -89,10 +89,6 @@ import { supabase } from "./utils/initSupabase";
 
 function App() {
     const [user, setUser] = useState<User | null>(null);
-    //const [notes, setNotes] = useState(async () => {
-    //    const saved = await supabase.from("notes").select("*");
-    //    return saved.data ? JSON.parse(saved.data.toString()) : initialNotes;
-    //});
     const [notes, setNotes] = useState<notesType[]>([]);
     useEffect(() => {
         const {
