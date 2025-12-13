@@ -11,85 +11,14 @@ import type { notesType } from "./utils/notesType";
 import { EditNotePage } from "./pages/editNote";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "./utils/initSupabase";
-
-//const initialNotes = [
-//    {
-//        id: 1,
-//        date: "10.12.2025 18:50:42",
-//        title: "Ma note",
-//        content:
-//            "Je suis une note super importante, car je suis simplement la note de teste que permet de voir si l'affichage de la preview note ainsi que l'affichage de la note global est correct ou non, c'est pourquoi mon texte doit être assez long, aussi pour permettre d'afficher une partie du contenu et au clique d'un bouton afficher l'entierté de la note.\nVoili Voilou :)",
-//    },
-//    {
-//        id: 2,
-//        date: "10.12.2025 18:50:42",
-//        title: "Roadmap",
-//        content: `
-//My Perfect Notebook
-//Vue d'ensemble
-//
-//Application web de prise de notes développée progressivement pour apprendre React, les bases de données et le déploiement.
-//Stack Technique
-//
-//    Frontend: React 19 + TypeScript
-//    Build: Vite + SWC
-//    Styling: Tailwind CSS v4 + shadcn/ui
-//    Package Manager: Bun
-//    Backend (futur): Supabase
-//    IDE: Lazyvim
-//
-//Plan de développement
-//Phase 1: MVP Local (1-2 semaines)
-//
-//    Interface CRUD notes basique
-//    Éditeur texte simple
-//    Liste + recherche basique
-//    Sauvegarde localStorage
-//    Pas de backend nécessaire
-//
-//Phase 2: Backend + DB (2-3 semaines)
-//
-//    Configuration Supabase
-//    Authentification email/password
-//    Migration localStorage → PostgreSQL
-//    API CRUD complète
-//
-//Phase 3: Features avancées (flexible)
-//
-//    Éditeur Markdown avec preview
-//    Système de tags/catégories
-//    Partage de notes
-//    Mode sombre
-//    Raccourcis clavier
-//    Export PDF/Markdown
-//
-//Phase 4: Production (1 semaine)
-//
-//    Build optimisé Vite
-//    Déploiement Vercel ou VPS
-//    Configuration domaine + HTTPS
-//
-//État actuel
-//
-//✅ Setup initial complété (Vite + React + TypeScript + Tailwind v4) ✅ shadcn/ui configuré ✅ Repository GitHub créé 🔄 Prêt à commencer Phase 1 - MVP
-//Notes techniques
-//
-//    Utilise LazyVim (pas VS Code)
-//    Environnement: Arch Linux (omarchy)
-//    Tailwind v4 utilisé (pas de tailwind.config.js nécessaire)`,
-//    },
-//    {
-//        id: 3,
-//        date: "10.12.2025 18:52:42",
-//        title: "Jamais deux sans trois",
-//        content:
-//            "Comme le dit ce fameux proverbe, jamais deux notes écrite en dur sans une troisième!",
-//    },
-//];
+import { DisplayStatus } from "./myComponents/DisplayStatus";
 
 function App() {
     const [user, setUser] = useState<User | null>(null);
     const [notes, setNotes] = useState<notesType[]>([]);
+    const [delStatus, setDelStatus] = useState(false);
+    const [editStatus, setEditStatus] = useState(false);
+    const [newStatus, setNewStatus] = useState(false);
     useEffect(() => {
         const {
             data: { subscription },
@@ -136,6 +65,8 @@ function App() {
         }
         setNotes([newNote, ...notes]);
         console.log(newNote.title + " crée!");
+        setNewStatus(true);
+        setTimeout(() => setNewStatus(false), 5000);
     }
 
     async function deleteNote(target: notesType) {
@@ -153,6 +84,8 @@ function App() {
         console.log(
             "Note " + target.title + " datant du " + target.date + " supprimée",
         );
+        setDelStatus(true);
+        setTimeout(() => setDelStatus(false), 5000);
     }
 
     async function editNote(oldNote: notesType, newNote: notesType) {
@@ -172,7 +105,10 @@ function App() {
             ),
         );
         console.log("note bien modifiée!");
+        setEditStatus(true);
+        setTimeout(() => setEditStatus(false), 5000);
     }
+
     return (
         <ThemeProvider>
             <BrowserRouter>
@@ -202,6 +138,11 @@ function App() {
                     </nav>
 
                     {/* Routes */}
+                    <DisplayStatus
+                        delStatus={delStatus}
+                        editStatus={editStatus}
+                        newStatus={newStatus}
+                    />
                     <main className="max-w-3/4 mx-auto">
                         <Routes>
                             <Route

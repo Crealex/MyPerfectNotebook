@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Field } from "@/components/ui/field";
+import { Field, FieldTitle } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useState } from "react";
@@ -37,6 +37,9 @@ export function SignUp() {
             <PopoverContent>
                 <form onSubmit={logUser}>
                     <Field className="gap-5">
+                        <FieldTitle className="text-xl">
+                            Créer un compte
+                        </FieldTitle>
                         <Label htmlFor="email">E-mail</Label>
                         <Input
                             id="email"
@@ -46,12 +49,11 @@ export function SignUp() {
                         />
                         <Label htmlFor="password">Mot de passe</Label>
                         <Input
-                            id="password"
-                            required
+                            id="password" required
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-						<Button type="submit">Valider</Button>
+                        <Button type="submit">Valider</Button>
                     </Field>
                 </form>
             </PopoverContent>
