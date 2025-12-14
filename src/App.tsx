@@ -38,7 +38,7 @@ function App() {
             const { data, error } = await supabase
                 .from("notes")
                 .select("*")
-                .eq("user_id", user?.id);
+                .eq("user_id", user.id);
             if (error) {
                 console.log("Erreur:" + error.message);
                 return;
@@ -78,7 +78,11 @@ function App() {
         }
         setNotes(notes.filter((note: notesType) => target.id !== note.id));
         console.log(
-            "Note " + target.title + " datant du " + target.date_display + " supprimée",
+            "Note " +
+                target.title +
+                " datant du " +
+                target.date_display +
+                " supprimée",
         );
         setDelStatus(true);
         setTimeout(() => setDelStatus(false), 5000);
