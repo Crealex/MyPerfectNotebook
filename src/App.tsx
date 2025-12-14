@@ -51,10 +51,6 @@ function App() {
         }
     }, [user]);
 
-    useEffect(() => {
-        localStorage.setItem("notesArray", JSON.stringify(notes));
-    }, [notes]);
-
     async function addNote(newNote: notesType) {
         const { error } = await supabase.from("notes").insert(newNote);
         if (error) {
@@ -82,7 +78,7 @@ function App() {
         }
         setNotes(notes.filter((note: notesType) => target.id !== note.id));
         console.log(
-            "Note " + target.title + " datant du " + target.date + " supprimée",
+            "Note " + target.title + " datant du " + target.date_display + " supprimée",
         );
         setDelStatus(true);
         setTimeout(() => setDelStatus(false), 5000);

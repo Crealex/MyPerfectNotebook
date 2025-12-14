@@ -17,6 +17,7 @@ export function HomePage({
     user: User | null;
 }) {
     const [search, setSearch] = useState("");
+    // Filtre pour la search bar
     const filteredNotes = notes.filter((note) => {
         if (!search) return true;
         const lower = search.toLowerCase();
@@ -24,6 +25,12 @@ export function HomePage({
             note.title.toLowerCase().includes(lower) ||
             note.content.toLowerCase().includes(lower)
         );
+    });
+    // tri par date
+    const sortedNotes = filteredNotes.sort((a, b) => {
+        if (a.last_edit < b.last_edit) return 1;
+        if (b.last_edit < a.last_edit) return -1;
+        return 0;
     });
     if (!user)
         return (
@@ -35,13 +42,13 @@ export function HomePage({
         <div>
             <h1 className="text-4xl text-center my-4">Mes notes</h1>
             <SearchBar search={search} setSearch={setSearch} />
-            {filteredNotes.length === 0 ? (
+            {sortedNotes.length === 0 ? (
                 <div className="text-center text-xl mt-16 flex gap-4 justify-center">
                     Aucune note trouvée pour {search}
                     <Frown />
                 </div>
             ) : (
-                filteredNotes.map((note: notesType) => (
+                sortedNotes.map((note: notesType) => (
                     <NotePreview
                         key={note.id}
                         note={note}

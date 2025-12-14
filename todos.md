@@ -7,6 +7,7 @@
 - [x] demander a claude si c'est mieux de représenter les routes comme je l'ai fait ou de le faire via un objet
 - [x] implémenter les recherches basiques
 - [x] ajouter dans l'ui des jolies message de status un peu partout (chargement au fetch des notes, status lors de la creation, l'edition ou la suprresion des notes, etc..)
+- [ ] trier les notes par ordre de dernière modification (maybe en phase 3)
 
 ## Nice to have
 

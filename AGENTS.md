@@ -83,7 +83,7 @@ Application web de prise de notes développée **progressivement** pour apprendr
 - LocalStorage API
 - Composants shadcn/ui
 
-### Phase 2: Backend et Base de Données (QUASIMENT TERMINÉ)
+### Phase 2: Backend et Base de Données (TERMINÉ)
 
 **Objectif**: Persistance des données et synchronisation multi-appareils
 
@@ -100,12 +100,9 @@ Application web de prise de notes développée **progressivement** pour apprendr
 - [x] Migration localStorage → PostgreSQL
 - [x] API CRUD complète (fetchNotes, addNote, editNote, deleteNote)
 - [x] Gestion d'état asynchrone (async/await, useEffect)
-
-**À nettoyer:**
-
-- [ ] Supprimer le code commenté (initialNotes)
-- [ ] Supprimer le useEffect localStorage (plus nécessaire)
-- [ ] Tester avec plusieurs comptes utilisateurs
+- [x] Nettoyage du code (useEffect localStorage supprimé)
+- [x] Tests multi-comptes validés (RLS fonctionnel)
+- [x] Notifications utilisateur (DisplayStatus component)
 
 **Compétences acquises:**
 
@@ -116,17 +113,25 @@ Application web de prise de notes développée **progressivement** pour apprendr
 - Row Level Security (RLS) et policies
 - Listeners et subscriptions (onAuthStateChange)
 
-### Phase 3: Features Avancées (flexible)
+### Phase 3: Features Avancées (EN COURS)
 
-**Choisir selon les intérêts d'apprentissage:**
+**Features planifiées:**
 
 - [ ] Éditeur Markdown avec preview
-- [ ] Système de tags et catégories
-- [ ] Partage de notes
-- [x] Mode sombre/clair (déjà implémenté !)
-- [ ] Raccourcis clavier (hotkeys)
+- [ ] Système de tags avec couleurs
+- [ ] Filtrage des notes par tags
 - [ ] Export PDF/Markdown
-- [ ] Recherche avancée
+- [x] Mode sombre/clair
+- [x] Tri des notes par dernière modification (date ISO)
+
+**En cours d'implémentation — Système de tags:**
+
+1. [ ] Modifier le type `notesType` (ajouter `tags: Tag[]`)
+2. [ ] Ajouter colonne `tags` (jsonb) dans Supabase
+3. [ ] Afficher les tags dans `NotePreview`
+4. [ ] Créer composant `TagInput` (création à la volée + choix couleur)
+5. [ ] Intégrer `TagInput` dans `NewNote` et `editNote`
+6. [ ] Filtrage par tags dans `Home`
 
 ### Phase 4: Déploiement Production (1 semaine)
 
@@ -308,13 +313,14 @@ Tu as déjà utilisé `useState` ? Si oui, essaie de créer un état pour stocke
 
 ## État Actuel du Projet
 
-**Dernière mise à jour**: 13 Décembre 2025
+**Dernière mise à jour**: 14 Décembre 2025
 
-**Phase en cours**: Phase 2 - Backend et Base de Données (Supabase) — QUASIMENT TERMINÉE
+**Phase en cours**: Phase 3 — Features Avancées (système de tags en cours)
 
-**Prochaines étapes suggérées**:
-1. Nettoyage du code (supprimer code commenté, useEffect localStorage)
-2. Tester l'app avec plusieurs comptes
-3. Choisir une feature Phase 3 ou passer au déploiement
+**Prochaines étapes:**
+1. Implémenter le système de tags avec couleurs
+2. Ajouter le filtrage par tags
+3. Éditeur Markdown avec preview
+4. Export PDF/Markdown
 
 **Rappel final**: Alexandre veut **apprendre**, pas juste avoir une app qui fonctionne. La qualité de son apprentissage est plus importante que la vitesse de développement.

@@ -24,7 +24,8 @@ export function NewNotePage({ addNote, user }: Props) {
         const newNote = {
             title: title,
             content: content,
-            date: new Date().toLocaleString(),
+            date_display: new Date().toLocaleString(),
+            last_edit: new Date().toISOString(),
             id: Date.now(),
             user_id: user!.id,
         };

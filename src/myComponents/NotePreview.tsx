@@ -8,7 +8,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import type { notesType } from "@/utils/notesType";
+import type { notesType, tagsType } from "@/utils/notesType";
 import type { User } from "@supabase/supabase-js";
 import { ChevronDown, Edit, Trash } from "lucide-react";
 import { useState } from "react";
@@ -21,14 +21,33 @@ type Props = {
     user: User | null;
 };
 
+function Tags({ note }: { note: notesType }) {
+    return (
+        <CardContent className="flex gap-1 text-sm justify-center">
+            {note.tags.map((tag: tagsType) => {
+                return (
+                    <div
+                        key={tag.name}
+                        style={{ backgroundColor: tag.color }}
+                        className={"rounded-2xl py-0.5 px-1"}
+                    >
+                        {tag.name}
+                    </div>
+                );
+            })}
+        </CardContent>
+    );
+}
+
 export function NotePreview({ note, deleteNote }: Props) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
         <Card className="my-10">
             <CardTitle className="text-xl text-center ">{note.title}</CardTitle>
+            <Tags note={note} />
             <CardDescription className="italic text-center">
-                {"dernière modification: " + note.date}
+                {"dernière modification: " + note.date_display}
             </CardDescription>
             <CardContent
                 className={cn(

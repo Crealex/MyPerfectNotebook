@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 type Props = {
     editNote: (oldNote: notesType, newNote: notesType) => void;
     notes: notesType[];
-	user: User | null;
+    user: User | null;
 };
 
 export function EditNotePage({ notes, editNote, user }: Props) {
@@ -32,9 +32,10 @@ export function EditNotePage({ notes, editNote, user }: Props) {
         const newNote = {
             title: title!,
             content: content!,
-            date: new Date().toLocaleString(),
+            date_display: new Date().toLocaleString(),
+            last_edit: new Date().toISOString(),
             id: note!.id!,
-			user_id: user!.id
+            user_id: user!.id,
         };
         editNote(note!, newNote);
         navigate("/");
