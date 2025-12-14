@@ -22,6 +22,7 @@ type Props = {
 };
 
 function Tags({ note }: { note: notesType }) {
+    if (!note.tags) return null;
     return (
         <CardContent className="flex gap-1 text-sm justify-center">
             {note.tags.map((tag: tagsType) => {
