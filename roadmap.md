@@ -1,54 +1,103 @@
-Phase 1 : MVP Local (1-2 semaines)
-Objectif : Une app qui fonctionne sur ton navigateur, sans backend
-Tu développes l'interface complète avec :
+# Roadmap - My Perfect Notebook
 
-Création, édition, suppression de notes
-Éditeur de texte (simple textarea ou markdown basique)
-Liste des notes avec recherche
-Stockage dans localStorage
+## Objectif du Projet
 
-Stack : React + Vite + Tailwind + shadcn/ui
-À la fin de cette phase, tu as une app utilisable localement et tu maîtrises bien React et les composants shadcn.
-Phase 2 : Backend et Base de Données (2-3 semaines)
-Objectif : Persistance des données et multi-appareils
-Tu ajoutes :
+Application web de prise de notes pour apprendre React, bases de données et déploiement.
 
-Configuration de Supabase (ou autre DB de ton choix)
-Système d'authentification (email/password)
-Migration du localStorage vers la DB
-API pour CRUD des notes
+---
 
-Nouveau à apprendre : Requêtes SQL/API, gestion d'état asynchrone, authentification
-Phase 3 : Features Avancées (flexible)
-Tu peux ajouter ce qui t'intéresse :
+## Phase 0: Setup ✅
 
-Markdown avec preview
-Tags et catégories
-Partage de notes
-Mode sombre/clair
-Raccourcis clavier
-Export PDF/Markdown
+- Initialisation Vite + React + TypeScript
+- Configuration Tailwind CSS v4
+- Installation shadcn/ui
+- Repository GitHub créé
 
-Tu choisis selon ce que tu veux apprendre.
-Phase 4 : Déploiement Production (1 semaine)
-Frontend :
+---
 
-Build de production avec Vite
-Déploiement sur Vercel (gratuit et simple) ou sur ton hébergement
-Configuration du nom de domaine
+## Phase 1: MVP Local ✅
 
-Backend :
+**Objectif**: App fonctionnelle dans le navigateur, sans backend
 
-Supabase est déjà hébergé (pas de soucis)
-Si tu fais ton propre backend : déploiement sur ton VPS avec Docker
+**Features**:
+- Création, édition, suppression de notes
+- Liste des notes avec recherche basique
+- Éditeur de texte simple
+- Stockage dans localStorage
 
-À gérer : HTTPS, variables d'environnement, monitoring basique
-Estimation réaliste
+**Compétences acquises**:
+- Composants React et props
+- State management (useState, useEffect)
+- Event handling
+- LocalStorage API
+- Composants shadcn/ui
 
-Version utilisable localement : 2 semaines
-Version avec DB et auth : 1 mois
-Version en prod avec features : 2 mois (en travaillant dessus régulièrement)
+---
 
-Mon conseil pour commencer
-Crée d'abord un repo GitHub et initialise ton projet React avec Vite. Installe Tailwind et shadcn/ui, puis code juste l'interface d'une note unique. Une fois que tu as ça, tu ajoutes la liste, puis le CRUD, etc.
-Tu veux que je te guide pour initialiser le projet ou tu préfères des conseils sur une phase spécifique ?
+## Phase 2: Backend et Base de Données ✅
+
+**Objectif**: Persistance des données et synchronisation multi-appareils
+
+**Features**:
+- Configuration Supabase (projet créé, client initialisé)
+- Table `notes` avec RLS (Row Level Security)
+- Policies pour sécuriser le CRUD
+- Authentification (SignIn, SignUp, SignOut)
+- Migration localStorage → PostgreSQL
+- API CRUD complète (fetchNotes, addNote, editNote, deleteNote)
+- Notifications utilisateur (DisplayStatus component)
+
+**Compétences acquises**:
+- Requêtes SQL/API avec Supabase
+- Authentification utilisateur (sessions, tokens)
+- Gestion d'état asynchrone (Promises, async/await)
+- Base de données relationnelle (PostgreSQL)
+- Row Level Security (RLS) et policies
+- Listeners et subscriptions (onAuthStateChange)
+
+---
+
+## Phase 3: Features Avancées 🚧 (EN COURS)
+
+**Fait**:
+- [x] Mode sombre/clair
+- [x] Tri des notes par dernière modification
+- [x] Type `notesType` avec `tags: Tag[]`
+- [x] Colonne `tags` (jsonb) dans Supabase
+- [x] Affichage des tags dans `NotePreview`
+
+**En cours** (voir `todos.md`):
+- [ ] Composant `TagInput` (création à la volée + choix couleur)
+- [ ] Intégration `TagInput` dans NewNote et editNote
+- [ ] Filtrage par tags dans Home
+
+**Planifié**:
+- [ ] Éditeur Markdown avec preview
+- [ ] Export PDF/Markdown
+
+---
+
+## Phase 4: Déploiement Production
+
+**Frontend**:
+- Build de production (Vite)
+- Déploiement (Vercel ou VPS)
+- Configuration domaine Infomaniak + HTTPS
+
+**Backend**:
+- Supabase déjà hébergé
+
+**À gérer**:
+- Variables d'environnement
+- Monitoring basique
+- Sécurité (CORS, rate limiting)
+
+---
+
+## Ressources
+
+- [React Docs](https://react.dev/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Supabase Docs](https://supabase.com/docs)

@@ -1,326 +1,54 @@
 # AGENTS.md - My Perfect Notebook
 
-## Objectif du Projet
+## Règles d'Interaction (IMPORTANT)
 
-Application web de prise de notes développée **progressivement** pour apprendre React, les bases de données et le déploiement.
-
-## Règles d'Interaction avec l'Étudiant
-
-- Alexandre est étudiant à l'École 42 et souhaite **apprendre en codant lui-même**
+- Alexandre (École 42) veut **apprendre en codant lui-même**
 - **NE JAMAIS modifier les fichiers sans demande explicite**
-- Adopter une approche **pédagogique** : expliquer les concepts, donner des directions, mais laisser Alexandre coder
-- Seulement proposer du code complet si explicitement demandé avec "code-moi ça" ou "écris le code complet"
-- Par défaut : **guider, expliquer, suggérer** plutôt que coder directement
-- Proposer des exemples et des notions a creuser plutot que de donner un code préfet
-
-## Philosophie École 42
-
-- Apprentissage par la pratique
-- Comprendre en profondeur plutôt que copier-coller
-- Résolution de problèmes autonome avec guidance
+- **Guider, expliquer, suggérer** — pas coder directement
+- Code complet uniquement si demandé avec "code-moi ça"
 
 ## Stack Technique
 
-### Frontend
+- **Frontend**: React 19 + TypeScript + Vite + SWC
+- **Styling**: Tailwind CSS v4 + shadcn/ui (new-york, slate)
+- **Backend**: Supabase + PostgreSQL
+- **Outils**: Bun, LazyVim, Arch Linux
 
-- **React 19** + **TypeScript**
-- **Vite** (build tool) + **SWC** (compilateur)
-- **Tailwind CSS v4** (styling)
-- **shadcn/ui** (component library)
+## Commandes
 
-### Outils
-
-- **Bun** (package manager)
-- **LazyVim** (IDE - pas VS Code!)
-- **Arch Linux** (omarchy)
-
-### Backend (Phase 2)
-
-- **Supabase** (BaaS)
-- **PostgreSQL** (base de données)
-
-### Déploiement (Phase 4)
-
-- Hébergement: Un nom de domaine Infomaniak
-- Options: Vercel ou VPS personnel
-
-## Commandes de Build
-
-- `bun run dev` - Démarrer le serveur de développement avec Vite
-- `bun run build` - Build pour production (TypeScript compile + Vite build)
-- `bun run preview` - Prévisualiser le build de production
-- `bun run lint` - Lancer ESLint sur tous les fichiers
-- `bunx shadcn@latest add [nom-composant]` - Ajouter un composant shadcn/ui
-
-## Plan de Développement
-
-### Phase 0: Setup (TERMINÉ)
-
-- [x] Initialisation Vite + React + TypeScript
-- [x] Configuration Tailwind CSS v4
-- [x] Installation shadcn/ui
-- [x] Repository GitHub créé
-- [x] Structure de base du projet
-
-### Phase 1: MVP Local (TERMINÉ)
-
-**Objectif**: App fonctionnelle dans le navigateur, sans backend
-
-**Features implémentées:**
-
-- [x] Création de notes
-- [x] Édition de notes
-- [x] Suppression de notes
-- [x] Liste des notes avec recherche basique
-- [x] Éditeur de texte simple (potentiel amélioration possible)
-- [x] Stockage dans localStorage
-
-**Compétences acquises:**
-
-- Composants React et props
-- State management (useState, useEffect)
-- Event handling
-- LocalStorage API
-- Composants shadcn/ui
-
-### Phase 2: Backend et Base de Données (TERMINÉ)
-
-**Objectif**: Persistance des données et synchronisation multi-appareils
-
-**Features implémentées:**
-
-- [x] Configuration de Supabase (projet créé, client initialisé)
-- [x] Table `notes` avec RLS (Row Level Security)
-- [x] Policies pour sécuriser le CRUD (select, insert, update, delete)
-- [x] Système d'authentification (email/password)
-  - [x] SignIn (connexion)
-  - [x] SignUp (inscription)
-  - [x] SignOut (déconnexion)
-  - [x] onAuthStateChange (listener centralisé)
-- [x] Migration localStorage → PostgreSQL
-- [x] API CRUD complète (fetchNotes, addNote, editNote, deleteNote)
-- [x] Gestion d'état asynchrone (async/await, useEffect)
-- [x] Nettoyage du code (useEffect localStorage supprimé)
-- [x] Tests multi-comptes validés (RLS fonctionnel)
-- [x] Notifications utilisateur (DisplayStatus component)
-
-**Compétences acquises:**
-
-- Requêtes SQL/API avec Supabase
-- Authentification utilisateur (sessions, tokens)
-- Gestion d'état asynchrone (Promises, async/await)
-- Base de données relationnelle (PostgreSQL)
-- Row Level Security (RLS) et policies
-- Listeners et subscriptions (onAuthStateChange)
-
-### Phase 3: Features Avancées (EN COURS)
-
-**Features planifiées:**
-
-- [ ] Éditeur Markdown avec preview
-- [ ] Système de tags avec couleurs
-- [ ] Filtrage des notes par tags
-- [ ] Export PDF/Markdown
-- [x] Mode sombre/clair
-- [x] Tri des notes par dernière modification (date ISO)
-
-**En cours d'implémentation — Système de tags:**
-
-1. [ ] Modifier le type `notesType` (ajouter `tags: Tag[]`)
-2. [ ] Ajouter colonne `tags` (jsonb) dans Supabase
-3. [ ] Afficher les tags dans `NotePreview`
-4. [ ] Créer composant `TagInput` (création à la volée + choix couleur)
-5. [ ] Intégrer `TagInput` dans `NewNote` et `editNote`
-6. [ ] Filtrage par tags dans `Home`
-
-### Phase 4: Déploiement Production (1 semaine)
-
-**Objectif**: Mise en ligne de l'application
-
-**Frontend:**
-
-- [ ] Build de production (Vite)
-- [ ] Déploiement (Vercel ou VPS)
-- [ ] Configuration domaine + HTTPS
-
-**Backend:**
-
-- [ ] Supabase déjà hébergé (pas de config supplémentaire)
-- [ ] Ou si backend custom: déploiement Docker sur VPS
-
-**À gérer:**
-
-- Variables d'environnement
-- Monitoring basique
-- Sécurité (CORS, rate limiting)
-
-## Structure du Projet
-
-```
-myperfectnotebook/
-├── src/
-│   ├── components/       # Composants React
-│   │   └── ui/          # Composants shadcn/ui
-│   ├── lib/             # Utilitaires
-│   │   └── utils.ts     # Helper functions
-│   ├── myComponents/    # Composants custom
-│   ├── pages/           # Pages de l'application
-│   ├── utils/           # Types et utilitaires
-│   ├── App.tsx          # Composant principal
-│   ├── main.tsx         # Point d'entrée
-│   └── index.css        # Styles Tailwind
-├── public/              # Assets statiques
-├── package.json         # Dépendances
-├── vite.config.ts       # Config Vite
-├── tsconfig.json        # Config TypeScript
-├── components.json      # Config shadcn/ui
-└── README.md
+```bash
+bun run dev          # Dev server
+bun run build        # Production build
+bun run lint         # ESLint
+bunx shadcn@latest add [component]
 ```
 
-## Configuration Actuelle
+## Structure
 
-### Tailwind CSS v4
+```
+src/
+├── components/ui/   # shadcn/ui
+├── myComponents/    # Composants custom
+├── pages/           # Pages (Home, NewNote, editNote, Settings)
+├── utils/           # Types (notesType.ts) + Supabase init
+├── lib/utils.ts     # cn() helper
+└── App.tsx          # Routes principales
+```
 
-- Pas de `tailwind.config.js` nécessaire avec Tailwind v4
-- Configuration directement dans `src/index.css`
-- Utilise `@tailwindcss/vite` plugin
-- Variables CSS pour les couleurs
+## Style de Code
 
-### shadcn/ui
+- Alias `@/*` pour imports src
+- 4 espaces, points-virgules obligatoires
+- PascalCase composants, camelCase variables
+- `cn()` pour classes conditionnelles
+- Try/catch pour async, typage strict TypeScript
 
-- Style: "new-york"
-- Base color: "slate"
-- CSS variables activées
-- Icon library: lucide-react
+## État Actuel
 
-### TypeScript
+**Phase 3** — Features Avancées
 
-- Target: ES2022
-- Strict mode activé
-- Path aliases configurés: `@/*` → `./src/*`
+**En cours**: Système de tags (voir `todos.md`)
 
-## Guidelines de Style de Code
+**Fait**: Auth, CRUD Supabase, RLS, Mode sombre, Tri par date
 
-### Imports
-
-- Utiliser les alias `@/*` pour les imports src (configuré dans tsconfig.json)
-- Grouper les imports : librairies externes d'abord, puis composants internes
-- Utiliser les imports nommés pour les hooks et utilitaires React
-
-### Formatage
-
-- 4 espaces pour l'indentation (config Prettier)
-- Points-virgules obligatoires
-- Utiliser clsx + tailwind-merge pour le styling conditionnel via l'utilitaire `cn()`
-
-### TypeScript
-
-- Typage strict avec interfaces pour les props des composants
-- Utiliser `React.ComponentProps` pour étendre les props des composants primitifs
-- Imports de types avec `import type` pour les imports de type uniquement
-
-### Conventions de Nommage
-
-- PascalCase pour les composants et fonctions
-- camelCase pour les variables et props
-- Utiliser des noms descriptifs (ex: `DropdownMenuContent` pas `DDContent`)
-
-### Gestion des Erreurs
-
-- Utiliser try/catch pour les opérations asynchrones
-- Console logs pour le débogage (à retirer en production)
-- Fallback localStorage avec parsing JSON
-
-### Structure des Composants
-
-- Utiliser les primitives Radix UI avec attributs data-slot
-- Forward refs si nécessaire
-- Déstructurer les props avec spread operator pour passthrough
-- Utiliser le merge className avec l'utilitaire `cn()`
-
-### Styling
-
-- Tailwind CSS v4 avec composants shadcn/ui
-- Utiliser les tokens de couleur sémantiques (bg-popover, text-muted-foreground, etc.)
-- Design responsive avec approche mobile-first
-
-## Approche Pédagogique
-
-### Quand Alexandre pose une question
-
-1. **Comprendre le contexte** : Quelle phase? Quel problème?
-2. **Expliquer le concept** d'abord
-3. **Guider vers la solution** : "Tu pourrais essayer...", "As-tu pensé à..."
-4. **Donner des ressources** : liens docs, exemples similaires
-5. **Code uniquement si explicitement demandé**
-
-### Types de réponses selon la demande
-
-| Demande                                  | Réponse attendue                                             |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| "Comment faire X ?"                      | Explication du concept + direction générale + ressources     |
-| "J'ai une erreur Y"                      | Analyse de l'erreur + explication + suggestion de correction |
-| "Code-moi X"                             | Fourniture du code commenté + explications                   |
-| "Est-ce que mon approche est correcte ?" | Review du code + suggestions d'amélioration                  |
-
-## Exemples d'Interactions
-
-### Mauvais exemple
-
-**Alexandre**: "Je veux ajouter une liste de notes"
-**Claude**: _[Fournit immédiatement 200 lignes de code complet]_
-
-### Bon exemple
-
-**Alexandre**: "Je veux ajouter une liste de notes"
-**Claude**: "Super ! Pour afficher une liste de notes, tu vas avoir besoin de :
-
-1. Un état pour stocker tes notes (array d'objets)
-2. Un composant pour afficher une note individuelle
-3. Un composant pour la liste qui map sur tes notes
-
-Tu as déjà utilisé `useState` ? Si oui, essaie de créer un état pour stocker un array de notes avec `{ id, title, content }`. Je peux te guider ensuite pour l'affichage !"
-
-### Quand du code est explicitement demandé
-
-**Alexandre**: "Code-moi le composant NoteCard complet avec TypeScript"
-**Claude**: _[Fournit le code commenté avec explications]_
-
-## Ce qu'il NE faut PAS faire
-
-1. Modifier les fichiers sans demande explicite
-2. Proposer du code complet par défaut
-3. Assumer qu'Alexandre veut la solution complète
-4. Sauter les explications pédagogiques
-5. Utiliser des raccourcis qui empêchent l'apprentissage
-
-## Ce qu'il FAUT faire
-
-1. Expliquer les concepts avant de proposer du code
-2. Poser des questions pour comprendre le niveau de compréhension
-3. Guider vers la documentation officielle
-4. Encourager l'expérimentation
-5. Célébrer les succès d'apprentissage
-
-## Ressources Recommandées
-
-- [React Docs](https://react.dev/)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- [Tailwind CSS v4 Docs](https://tailwindcss.com/)
-- [shadcn/ui Documentation](https://ui.shadcn.com/)
-- [Vite Guide](https://vitejs.dev/guide/)
-- [Supabase Docs](https://supabase.com/docs)
-
-## État Actuel du Projet
-
-**Dernière mise à jour**: 14 Décembre 2025
-
-**Phase en cours**: Phase 3 — Features Avancées (système de tags en cours)
-
-**Prochaines étapes:**
-1. Implémenter le système de tags avec couleurs
-2. Ajouter le filtrage par tags
-3. Éditeur Markdown avec preview
-4. Export PDF/Markdown
-
-**Rappel final**: Alexandre veut **apprendre**, pas juste avoir une app qui fonctionne. La qualité de son apprentissage est plus importante que la vitesse de développement.
+**Voir aussi**: `roadmap.md` (historique), `todos.md` (tâches)

@@ -1,15 +1,34 @@
-# TODO
+# TODO - My Perfect Notebook
 
-- [ ] fix l'erreur de dans themeprovider
-- [x] ajouter le theme shadcn rose (et si possible dracula, comme vu avec claude)
-- [x] créer l'edit page regarder avec Claude ou google car je ne sais pas ou mette le composant Route lié a editPage
-- [ ] créer un bouton backup qui génère un fichier JSON
-- [x] demander a claude si c'est mieux de représenter les routes comme je l'ai fait ou de le faire via un objet
-- [x] implémenter les recherches basiques
-- [x] ajouter dans l'ui des jolies message de status un peu partout (chargement au fetch des notes, status lors de la creation, l'edition ou la suprresion des notes, etc..)
-- [ ] trier les notes par ordre de dernière modification (maybe en phase 3)
+## En cours: Système de Tags (Phase 3)
+
+- [ ] Créer composant `TagInput` (création à la volée + choix couleur)
+- [ ] Intégrer `TagInput` dans `NewNote`
+- [ ] Intégrer `TagInput` dans `editNote`
+- [ ] Filtrage par tags dans `Home`
+
+## Bugs à fixer
+
+- [ ] Fix l'erreur dans ThemeProvider
+
+## Backlog
+
+- [ ] Créer un bouton backup qui génère un fichier JSON
+- [ ] Éditeur Markdown avec preview
+- [ ] Export PDF/Markdown
 
 ## Nice to have
 
-- [ ] faire que le menu edit soit une fenetre flottante (risque d'être très compliqué)
-- [ ] highlight le texte qui match avec la recherche
+- [ ] Menu edit en fenêtre flottante
+- [ ] Highlight le texte qui match avec la recherche
+
+## Fait récemment
+
+- [x] Ajouter le theme shadcn rose
+- [x] Créer l'edit page
+- [x] Implémenter les recherches basiques
+- [x] Messages de status (DisplayStatus)
+- [x] Tri des notes par date de modification
+- [x] Type `notesType` avec tags
+- [x] Colonne tags (jsonb) dans Supabase
+- [x] Affichage des tags dans NotePreview

@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import type { notesType } from "@/utils/notesType";
+import { TagsInput } from "@/myComponents/TagsInput";
+import type { notesType, tagsType } from "@/utils/notesType";
 import type { User } from "@supabase/supabase-js";
 import { Frown } from "lucide-react";
 import { useState } from "react";
@@ -18,6 +19,7 @@ export function NewNotePage({ addNote, user }: Props) {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const navigate = useNavigate();
+    const [tags, setTags] = useState<tagsType[]>([]);
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -28,6 +30,7 @@ export function NewNotePage({ addNote, user }: Props) {
             last_edit: new Date().toISOString(),
             id: Date.now(),
             user_id: user!.id,
+            tags: tags,
         };
         addNote(newNote);
         navigate("/");
@@ -54,6 +57,7 @@ export function NewNotePage({ addNote, user }: Props) {
                         required
                         onChange={(e) => setContent(e.target.value)}
                     ></Textarea>
+                    <TagsInput tags={tags} setTags={setTags} />
                     <Button type="submit">Sauvegarder</Button>
                 </Field>
             </form>
