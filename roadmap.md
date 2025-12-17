@@ -65,10 +65,11 @@ Application web de prise de notes pour apprendre React, bases de données et dé
 - [x] Type `notesType` avec `tags: Tag[]`
 - [x] Colonne `tags` (jsonb) dans Supabase
 - [x] Affichage des tags dans `NotePreview`
+- [x] Composant `TagsInput` (création à la volée + choix couleur)
+- [x] Intégration `TagsInput` dans NewNote
 
 **En cours** (voir `todos.md`):
-- [ ] Composant `TagInput` (création à la volée + choix couleur)
-- [ ] Intégration `TagInput` dans NewNote et editNote
+- [ ] Intégration `TagsInput` dans editNote
 - [ ] Filtrage par tags dans Home
 
 **Planifié**:

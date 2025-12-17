@@ -5,14 +5,12 @@ import {
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { FieldContent, FieldDescription } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import type { tagsType } from "@/utils/notesType";
-import {
     DropdownMenu,
     DropdownMenuSeparator,
-} from "@radix-ui/react-dropdown-menu";
+} from "@/components/ui/dropdown-menu";
+import { FieldContent } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import type { tagsType } from "@/utils/notesType";
 import { useState } from "react";
 
 type Props = {
@@ -20,27 +18,44 @@ type Props = {
     setTags: (tags: tagsType[]) => void;
 };
 
-function DisplayTags({ tags }: { tags: tagsType[] }) {
+function DisplayTags({ tags, setTags }: Props) {
+    function rmTags(tagToRm: tagsType) {
+        setTags(tags.filter((tag: tagsType) => tag.name !== tagToRm.name));
+    }
     return (
-        <FieldDescription className="flex gap-3">
+        <div className="flex gap-3">
             Tags choisis:{" "}
             {tags.map((tag) => {
                 return (
                     <div
+                        key={tag.name}
                         style={{ background: tag.color }}
                         className="px-1 rounded-2xl text-white"
                     >
                         {tag.name}
+                        <button
+                            className="ml-1 h-fit text-red-500 cursor-pointer"
+                            onClick={() => rmTags(tag)}
+                        >
+                            <p>x</p>
+                        </button>
                     </div>
                 );
             })}
-        </FieldDescription>
+        </div>
     );
 }
 
 export function TagsInput({ tags, setTags }: Props) {
     const [name, setName] = useState("");
     const [color, setColor] = useState("#bcd979");
+
+    function addTags() {
+        if (name.trim() === "") return;
+        if (tags.some((tag) => tag.name === name)) return;
+        setTags([{ name, color }, ...tags]);
+        setName("");
+    }
     return (
         <div className="border m-4 rounded-2xl h-fit p-2">
             <FieldContent>
@@ -52,7 +67,7 @@ export function TagsInput({ tags, setTags }: Props) {
                         <DropdownMenuRadioGroup
                             value={color}
                             onValueChange={setColor}
-                            defaultValue=""
+                            defaultValue="#bcd979"
                         >
                             <DropdownMenuLabel>
                                 Choisis parmi ces couleurs
@@ -136,15 +151,20 @@ export function TagsInput({ tags, setTags }: Props) {
                 <Input
                     placeholder="Tag..."
                     type="text"
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key == "Enter") {
+                            addTags();
+                            e.stopPropagation();
+                            e.preventDefault();
+                        }
+                    }}
                 />
-                <Button
-                    type="button"
-                    onClick={() => setTags([{ name, color }, ...tags])}
-                >
+                <Button type="button" onClick={() => addTags()}>
                     Valider
                 </Button>
-                <DisplayTags tags={tags} />
+                <DisplayTags tags={tags} setTags={setTags} />
             </FieldContent>
         </div>
     );

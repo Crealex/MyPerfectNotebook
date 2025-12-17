@@ -2,9 +2,9 @@
 
 ## En cours: Système de Tags (Phase 3)
 
-- [ ] Créer composant `TagInput` (création à la volée + choix couleur)
-- [ ] Intégrer `TagInput` dans `NewNote`
-- [ ] Intégrer `TagInput` dans `editNote`
+- [x] Créer composant `TagsInput` (création à la volée + choix couleur)
+- [x] Intégrer `TagsInput` dans `NewNote`
+- [ ] Intégrer `TagsInput` dans `editNote`
 - [ ] Filtrage par tags dans `Home`
 
 ## Bugs à fixer
