@@ -8,20 +8,21 @@ import {
     DropdownMenu,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { FieldContent } from "@/components/ui/field";
+import { FieldContent, FieldTitle } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import type { tagsType } from "@/utils/notesType";
-import { useState } from "react";
+import { useState, type Dispatch, type SetStateAction } from "react";
 
 type Props = {
     tags: tagsType[];
-    setTags: (tags: tagsType[]) => void;
+    setTags: Dispatch<SetStateAction<tagsType[] >>;
 };
 
 function DisplayTags({ tags, setTags }: Props) {
     function rmTags(tagToRm: tagsType) {
         setTags(tags.filter((tag: tagsType) => tag.name !== tagToRm.name));
     }
+    if (!tags) return;
     return (
         <div className="flex gap-3">
             Tags choisis:{" "}
@@ -52,13 +53,16 @@ export function TagsInput({ tags, setTags }: Props) {
 
     function addTags() {
         if (name.trim() === "") return;
-        if (tags.some((tag) => tag.name === name)) return;
-        setTags([{ name, color }, ...tags]);
+        if (tags) {
+            if (tags.some((tag) => tag.name === name)) return;
+            setTags([{ name, color }, ...tags]);
+        } else setTags([{ name, color }]);
         setName("");
     }
     return (
         <div className="border m-4 rounded-2xl h-fit p-2">
             <FieldContent>
+                <FieldTitle className="text-center text-xl">Tags:</FieldTitle>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button>Couleurs</Button>

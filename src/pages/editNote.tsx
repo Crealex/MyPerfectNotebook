@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { TagsInput } from "@/myComponents/TagsInput";
 import type { notesType } from "@/utils/notesType";
 import type { User } from "@supabase/supabase-js";
 import { useState } from "react";
@@ -21,6 +22,7 @@ export function EditNotePage({ notes, editNote, user }: Props) {
         notes.find((e: notesType) => e.id.toString() === noteId) ?? null;
     const [content, setContent] = useState(note?.content);
     const [title, setTitle] = useState(note?.title);
+    const [tags, setTags] = useState(note!.tags);
     if (note == null) {
         navigate("/new");
         return <div>Not found...</div>;
@@ -36,6 +38,7 @@ export function EditNotePage({ notes, editNote, user }: Props) {
             last_edit: new Date().toISOString(),
             id: note!.id!,
             user_id: user!.id,
+            tags: tags!,
         };
         editNote(note!, newNote);
         navigate("/");
@@ -50,17 +53,17 @@ export function EditNotePage({ notes, editNote, user }: Props) {
                     <Input
                         placeholder="Mon titre ici..."
                         value={title}
-                        contentEditable={true}
                         required
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <Textarea
                         placeholder="Ma note ici..."
                         className="resize-none h-3/4"
-                        defaultValue={content}
+                        value={content}
                         required
                         onChange={(e) => setContent(e.target.value)}
                     ></Textarea>
+                    <TagsInput tags={tags!} setTags={setTags!} />
                     <Button type="submit">Sauvegarder</Button>
                 </Field>
             </form>

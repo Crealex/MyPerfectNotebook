@@ -4,7 +4,7 @@
 
 - [x] Créer composant `TagsInput` (création à la volée + choix couleur)
 - [x] Intégrer `TagsInput` dans `NewNote`
-- [ ] Intégrer `TagsInput` dans `editNote`
+- [x] Intégrer `TagsInput` dans `editNote`
 - [ ] Filtrage par tags dans `Home`
 
 ## Bugs à fixer
