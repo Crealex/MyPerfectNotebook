@@ -63,7 +63,7 @@ export function EditNotePage({ notes, editNote, user }: Props) {
                         required
                         onChange={(e) => setContent(e.target.value)}
                     ></Textarea>
-                    <TagsInput tags={tags!} setTags={setTags!} />
+                    <TagsInput tags={tags} setTags={setTags!} />
                     <Button type="submit">Sauvegarder</Button>
                 </Field>
             </form>
