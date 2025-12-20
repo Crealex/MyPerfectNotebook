@@ -6,6 +6,7 @@
 - [x] Intégrer `TagsInput` dans `NewNote`
 - [x] Intégrer `TagsInput` dans `editNote`
 - [ ] Filtrage par tags dans `Home`
+- [ ] Coder la fonction getAvailableTags()
 
 ## Bugs à fixer
 
