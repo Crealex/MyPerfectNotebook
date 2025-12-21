@@ -49,7 +49,7 @@ export function HomePage({
                 <TagsFilter
                     tagsFilter={tagsFilter}
                     setTagsFilter={setTagsFilter}
-                    tags={getAvailableTags()}
+                    tags={getAvailableTags(notes)}
                 />
             </div>
             {sortedNotes.length === 0 ? (

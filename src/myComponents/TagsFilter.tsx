@@ -21,6 +21,7 @@ function AvailableFilter({ tags, setTagsFilter, tagsFilter }: Props) {
                 key={tag.name}
                 style={{ background: tag.color }}
                 onClick={() => setTagsFilter([tag, ...tagsFilter])}
+                className="mt-1"
             >
                 {tag.name}
             </DropdownMenuItem>
