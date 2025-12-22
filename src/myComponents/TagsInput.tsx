@@ -12,40 +12,12 @@ import { FieldContent, FieldTitle } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import type { tagsType } from "@/utils/notesType";
 import { useState, type Dispatch, type SetStateAction } from "react";
+import { DisplayTags } from "./DisplayTags";
 
 type Props = {
     tags: tagsType[];
-    setTags: Dispatch<SetStateAction<tagsType[] >>;
+    setTags: Dispatch<SetStateAction<tagsType[]>>;
 };
-
-function DisplayTags({ tags, setTags }: Props) {
-    function rmTags(tagToRm: tagsType) {
-        setTags(tags.filter((tag: tagsType) => tag.name !== tagToRm.name));
-    }
-    if (!tags) return;
-    return (
-        <div className="flex gap-3">
-            Tags choisis:{" "}
-            {tags.map((tag) => {
-                return (
-                    <div
-                        key={tag.name}
-                        style={{ background: tag.color }}
-                        className="px-1 rounded-2xl text-white"
-                    >
-                        {tag.name}
-                        <button
-                            className="ml-1 h-fit text-red-500 cursor-pointer"
-                            onClick={() => rmTags(tag)}
-                        >
-                            <p>x</p>
-                        </button>
-                    </div>
-                );
-            })}
-        </div>
-    );
-}
 
 export function TagsInput({ tags, setTags }: Props) {
     const [name, setName] = useState("");

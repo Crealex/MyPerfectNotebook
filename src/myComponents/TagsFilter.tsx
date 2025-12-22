@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { tagsType } from "@/utils/notesType";
 import { FilterIcon } from "lucide-react";
+import { DisplayTags } from "./DisplayTags";
 
 type Props = {
     tagsFilter: tagsType[];
@@ -43,9 +44,7 @@ export function TagsFilter({ tags, tagsFilter, setTagsFilter }: Props) {
                     tagsFilter={tagsFilter}
                     setTagsFilter={setTagsFilter}
                 />
-                <div>
-                    <h2>Filter par:</h2>
-                </div>
+                <DisplayTags tags={tagsFilter} setTags={setTagsFilter} />
             </DropdownMenuContent>
         </DropdownMenu>
     );

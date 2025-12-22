@@ -20,8 +20,15 @@ export function HomePage({
 }) {
     const [search, setSearch] = useState("");
     const [tagsFilter, setTagsFilter] = useState<tagsType[]>([]);
+    //Filtre des tags
+    const filteredTags = notes.filter((note) => {
+        if (!tagsFilter.at(0)) return true;
+        return note.tags.some((tag) =>
+            tagsFilter.some((filtre) => filtre.name === tag.name),
+        );
+    });
     // Filtre pour la search bar
-    const filteredNotes = notes.filter((note) => {
+    const filteredNotes = filteredTags.filter((note) => {
         if (!search) return true;
         const lower = search.toLowerCase();
         return (
