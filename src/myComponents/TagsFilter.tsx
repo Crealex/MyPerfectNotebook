@@ -16,6 +16,7 @@ type Props = {
 };
 
 function AvailableFilter({ tags, setTagsFilter, tagsFilter }: Props) {
+    if (!tags) return;
     return tags.map((tag) => {
         return (
             <DropdownMenuItem
